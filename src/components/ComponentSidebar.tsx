@@ -65,6 +65,24 @@ const componentsSection = {
       href: "/components/forms",
       new: true,
     },
+    {
+      id: "buttons",
+      name: "Buttons Variants",
+      href: "/components/buttons",
+      new: true,
+    },
+    // {
+    //   id: "buttons-animated-submit",
+    //   name: "Animated Submit",
+    //   href: "/components/buttons-animated-submit",
+    //   new: true,
+    // },
+    // {
+    //   id: "buttons-gooey",
+    //   name: "Gooey Hover",
+    //   href: "/components/buttons-gooey",
+    //   new: true,
+    // },
     // Add more components here
   ],
 };
@@ -246,9 +264,7 @@ export function ComponentSidebar({
                 expandedSections.includes("components") && "text-white/80"
               )}
             >
-              <div className="flex items-center gap-2">
-                Components
-              </div>
+              <div className="flex items-center gap-2">Components</div>
               {expandedSections.includes("components") ? (
                 <ChevronDown className="w-4 h-4" />
               ) : (
@@ -284,9 +300,7 @@ export function ComponentSidebar({
                           <span
                             className={cn(
                               "text-[11px] p-1 py-0 rounded-full font-medium border border-primary text-primary/70",
-                              isActive
-                                ? "bg-primary-foreground/20"
-                                : ""
+                              isActive ? "bg-primary-foreground/20" : ""
                             )}
                           >
                             New

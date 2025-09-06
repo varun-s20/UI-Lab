@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Copy, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { componentData, ComponentDoc } from "@/data/componentData";
 import { loadComponentFiles } from "@/data/fileLoader";
@@ -16,22 +15,24 @@ export function ComponentPreview({ componentName }: ComponentPreviewProps) {
   const [expandedFiles, setExpandedFiles] = useState<Record<string, boolean>>(
     {}
   );
-  const [loadedComponent, setLoadedComponent] = useState<ComponentDoc | null>(
-    null
-  );
 
   const component = componentData[componentName as keyof typeof componentData];
+  const [loadedComponent, setLoadedComponent] = useState<ComponentDoc | null>(
+    component ?? null
+  );
 
   useEffect(() => {
-    if (component && component.codeFiles) {
+    if (!component) return;
+    // Optimistically show the new component immediately to avoid flicker
+    setLoadedComponent(component);
+    // Hydrate code files asynchronously if provided
+    if (component.codeFiles) {
       loadComponentFiles(component.codeFiles).then((loadedFiles) => {
         setLoadedComponent({
           ...component,
           codeFiles: loadedFiles,
         });
       });
-    } else if (component) {
-      setLoadedComponent(component);
     }
   }, [component]);
 
@@ -89,7 +90,7 @@ export function ComponentPreview({ componentName }: ComponentPreviewProps) {
 
         {/* Content */}
         {activeTab === "preview" && (
-          <div className="bg-card border border-border rounded-lg">
+          <div className="bg-card border border-border rounded-lg min-h-96">
             {loadedComponent.preview}
           </div>
         )}

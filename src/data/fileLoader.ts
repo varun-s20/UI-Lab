@@ -532,6 +532,245 @@ export function SignupForm() {
     </div>
   );
 }`,
+  "components/Buttons.tsx": `"use client";
+import React from "react";
+import { Button } from "@/components/ui/button";
+
+const Buttons = () => {
+  return (
+    <div className="flex flex-wrap gap-3 p-6">
+      <Button>Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="destructive">Destructive</Button>
+    </div>
+  );
+};
+
+export default Buttons;`,
+
+//   "components/AnimatedSubmitButton.tsx": `"use client";
+// import React, { useState } from "react";
+// import { motion, useAnimation } from "framer-motion";
+
+// const AnimatedSubmitButton = () => {
+//   const [isAnimating, setIsAnimating] = useState(false);
+//   const [showCheck, setShowCheck] = useState(false);
+
+//   const buttonControls = useAnimation();
+//   const progressControls = useAnimation();
+//   const checkControls = useAnimation();
+
+//   const runSequence = async () => {
+//     if (isAnimating) return;
+//     setIsAnimating(true);
+//     setShowCheck(false);
+
+//     await checkControls.start({
+//       opacity: 0,
+//       pathLength: 0,
+//       transition: { duration: 0 },
+//     });
+
+//     await buttonControls.start({
+//       height: 10,
+//       width: 300,
+//       borderRadius: 100,
+//       transition: { duration: 1.3 },
+//     });
+
+//     await progressControls.start({
+//       width: 300,
+//       transition: { duration: 2, ease: "linear" },
+//     });
+
+//     await buttonControls.start({ width: 0, transition: { duration: 0.001 } });
+
+//     await progressControls.start({
+//       width: 80,
+//       height: 80,
+//       borderRadius: 80,
+//       transition: { delay: 0.5, duration: 0.75 },
+//     });
+
+//     setShowCheck(true);
+//     await checkControls.start({ opacity: 1, transition: { duration: 0.1 } });
+//     await checkControls.start({
+//       pathLength: 1,
+//       transition: { duration: 0.2, ease: "easeInOut" },
+//     });
+
+//     await new Promise((r) => setTimeout(r, 800));
+
+//     setShowCheck(false);
+//     await progressControls.start({
+//       width: 0,
+//       height: 10,
+//       borderRadius: 200,
+//       transition: { duration: 0.2 },
+//     });
+//     await buttonControls.start({
+//       height: 80,
+//       width: 200,
+//       borderRadius: 8,
+//       transition: { duration: 0.2 },
+//     });
+//     setIsAnimating(false);
+//   };
+
+//   return (
+//     <div className="relative h-20 w-[200px]">
+//       <motion.div
+//         className="button absolute inset-0 mx-auto cursor-pointer select-none"
+//         style={{ background: "red", borderRadius: 8 }}
+//         animate={buttonControls}
+//         initial={{ height: 80, width: 200, borderRadius: 8, background: "red" }}
+//         onClick={runSequence}
+//       >
+//         <motion.div
+//           className="text absolute inset-0 grid place-items-center"
+//           initial={{ opacity: 1 }}
+//           animate={{ opacity: isAnimating ? 0 : 1 }}
+//           transition={{ duration: 0.1 }}
+//         >
+//           <span className="font-semibold text-base" style={{ color: "white" }}>
+//             Submit
+//           </span>
+//         </motion.div>
+//       </motion.div>
+
+//       <motion.div
+//         className="progress-bar absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+//         style={{ height: 10, width: 0, borderRadius: 200, background: "white" }}
+//         animate={progressControls}
+//         initial={{ width: 0, height: 10, borderRadius: 200 }}
+//       />
+
+//       {showCheck && (
+//         <motion.svg
+//           viewBox="0 0 25 30"
+//           className="absolute left-1/2 top-1/2 h-[30px] w-[30px] -translate-x-1/2 -translate-y-1/2"
+//         >
+//           <motion.path
+//             d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2"
+//             fill="none"
+//             stroke="yellow"
+//             strokeWidth={4}
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//             initial={{ opacity: 0, pathLength: 0 }}
+//             animate={checkControls}
+//           />
+//         </motion.svg>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default AnimatedSubmitButton;`,
+//   "components/GooeyHoverButton.tsx": `"use client";
+// import React, { useState } from "react";
+// import { motion, useAnimationControls } from "framer-motion";
+
+// const GooeyHoverButton = () => {
+//   const [hovered, setHovered] = useState(false);
+//   const tl1 = useAnimationControls();
+//   const tl2 = useAnimationControls();
+//   const eff = useAnimationControls();
+
+//   const runBurst = async () => {
+//     tl1.start(function(i){ return {
+//       x: [0, -25, -25, -30, -40],
+//       y: [0, -25, -25, -32, -20],
+//       scale: i === 0 ? [1, 1, 0.2, 0.2, 0] : i === 1 ? [1, 1, 0.8, 0.4, 0] : [1, 1, 0.2, 0.2, 0],
+//       opacity: [1, 1, 1, 1, 0],
+//       transition: { duration: 1.8, times: [0, 0.25, 0.3, 0.8, 1] }
+//     }; });
+
+//     tl2.start(function(i){ return {
+//       x: [0, 30, 36, 45, 55],
+//       y: [0, 30, 36, 24, 15],
+//       scale: i === 0 ? [1, 1, 0.2, 0.2, 0] : i === 1 ? [1, 1, 0.8, 0.6, 0] : [1, 1, 0.2, 0.2, 0],
+//       opacity: [1, 1, 1, 1, 0],
+//       transition: { duration: 1.6, times: [0, 0.25, 0.3, 0.8, 1] }
+//     }; });
+
+//     eff.start({ scaleY: [1, 1.1, 1], transition: { duration: 1.2, times: [0, 0.2, 1] } });
+//   };
+
+//   const onEnter = () => {
+//     setHovered(true);
+//     runBurst();
+//   };
+//   const onLeave = () => {
+//     setHovered(false);
+//     tl1.start({ x: 0, y: 0, scale: 1, opacity: 1, transition: { duration: 0.2 } });
+//     tl2.start({ x: 0, y: 0, scale: 1, opacity: 1, transition: { duration: 0.2 } });
+//     eff.start({ scaleY: 1, transition: { duration: 0.2 } });
+//   };
+
+//   const darkBlue = "#222";
+//   const action = "#90feb5";
+
+//   return (
+//     <div className="relative grid place-items-center py-8">
+//       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute w-px h-px opacity-0">
+//         <defs>
+//           <filter id="goo">
+//             <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+//             <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+//             <feComposite in="SourceGraphic" in2="goo"/>
+//           </filter>
+//         </defs>
+//       </svg>
+
+//       <span className="relative inline-block [filter:url(#goo)]">
+//         <motion.button
+//           type="button"
+//           onHoverStart={onEnter}
+//           onHoverEnd={onLeave}
+//           animate={{ backgroundColor: hovered ? action : darkBlue, color: "#fff" }}
+//           transition={{ duration: 0.1 }}
+//           className="relative z-10 px-8 py-4 text-xs tracking-widest uppercase font-medium rounded-md"
+//           style={{ backgroundColor: darkBlue, color: "#fff" }}
+//         >
+//           Hover me
+//         </motion.button>
+
+//         <span className="pointer-events-none absolute inset-0 -z-0 block">
+//           {[0, 1, 2].map(function(i){ return (
+//             <motion.span
+//               key={"tl-" + i}
+//               custom={i}
+//               animate={tl1}
+//               className="absolute rounded-full"
+//               style={{ width: 25, height: 25, left: "27%", top: i === 0 ? "40%" : i === 1 ? "46%" : "50%", background: darkBlue, borderRadius: 15 }}
+//             />
+//           ); })}
+
+//           <motion.span
+//             className="absolute"
+//             animate={eff}
+//             style={{ width: "50%", height: "25%", top: "50%", left: "25%", transform: "translateY(-50%)", background: darkBlue, borderRadius: 8 }}
+//           />
+
+//           {[0, 1, 2].map(function(i){ return (
+//             <motion.span
+//               key={"br-" + i}
+//               custom={i}
+//               animate={tl2}
+//               className="absolute rounded-full"
+//               style={{ width: 25, height: 25, right: "27%", bottom: i === 0 ? "40%" : i === 1 ? "44%" : "38%", background: darkBlue, borderRadius: 15 }}
+//             />
+//           ); })}
+//         </span>
+//       </span>
+//     </div>
+//   );
+// };
+
+// export default GooeyHoverButton;`,
 };
 
 export async function loadComponentFile(filePath: string): Promise<string> {

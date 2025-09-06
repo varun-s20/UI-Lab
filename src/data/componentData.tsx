@@ -2,6 +2,9 @@ import React from "react";
 import { SignupForm } from "../components/SignupForm";
 import { PortfolioCarousel } from "../components/PortfolioCarousel";
 import { NewsletterComponent } from "../components/NewsletterComponent";
+import Buttons from "@/components/Buttons";
+// import AnimatedSubmitButton from "@/components/AnimatedSubmitButton";
+// import GooeyHoverButton from "@/components/GooeyHoverButton";
 
 // Types for structured documentation
 type InstallStep = {
@@ -302,4 +305,145 @@ export const componentData: Record<string, ComponentDoc> = {
       },
     ],
   },
+  buttons: {
+    title: "Buttons (General)",
+    category: "Buttons",
+    description:
+      "Beautiful buttons with smooth animations and customizable styles. Each button has its own container with individual copy functionality.",
+    preview: (
+      <div className="p-6">
+        <Buttons />
+      </div>
+    ),
+    installTabs: [
+      {
+        id: "dependencies",
+        label: "Dependencies",
+        steps: [
+          {
+            title: "Install shadcn/ui button",
+            code: "npx shadcn@latest add button",
+            description:
+              "Installs the Button primitive used by these examples.",
+          },
+          {
+            title: "Install lucide-react for icons",
+            code: "npm install lucide-react",
+            description: "Installs lucide-react for copy and check icons.",
+          },
+        ],
+      },
+      {
+        id: "component",
+        label: "Component Code",
+        steps: [
+          {
+            title: "Copy component file",
+            description: "Copy the Buttons showcase component to your project.",
+            filePath: "components/Buttons.tsx",
+          },
+        ],
+      },
+    ],
+    codeFiles: [
+      {
+        path: "components/Buttons.tsx",
+        collapsed: false,
+      },
+    ],
+    props: [
+      {
+        title: "ButtonContainer Props",
+        rows: [
+          {
+            prop: "children",
+            type: "React.ReactNode",
+            description:
+              "The button component to be displayed inside the container.",
+          },
+          {
+            prop: "buttonCode",
+            type: "string",
+            description:
+              "The code snippet that will be copied when the copy button is clicked.",
+          },
+        ],
+      },
+    ],
+  },
+  // "buttons-animated-submit": {
+  //   title: "Animated Submit Button",
+  //   category: "Buttons",
+  //   description:
+  //     "Interactive submit button with progress and success check animation.",
+  //   preview: (
+  //     <div className="p-6">
+  //       <AnimatedSubmitButton />
+  //     </div>
+  //   ),
+  //   installTabs: [
+  //     {
+  //       id: "dependencies",
+  //       label: "Dependencies",
+  //       steps: [
+  //         {
+  //           title: "Install framer-motion",
+  //           code: "npm install framer-motion",
+  //           description:
+  //             "Used to power the timeline-like animations without jQuery.",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       id: "component",
+  //       label: "Component Code",
+  //       steps: [
+  //         {
+  //           title: "Copy component file",
+  //           description:
+  //             "Copy the AnimatedSubmitButton component to your project.",
+  //           filePath: "components/AnimatedSubmitButton.tsx",
+  //         },
+  //       ],
+  //     },
+  //   ],
+  //   codeFiles: [
+  //     { path: "components/AnimatedSubmitButton.tsx", collapsed: false },
+  //   ],
+  // },
+  // "buttons-gooey": {
+  //   title: "Gooey Hover Button",
+  //   category: "Buttons",
+  //   description: "Playful gooey hover effect button.",
+  //   preview: (
+  //     <div className="p-6">
+  //       <GooeyHoverButton />
+  //     </div>
+  //   ),
+  //   installTabs: [
+  //     {
+  //       id: "dependencies",
+  //       label: "Dependencies",
+  //       steps: [
+  //         {
+  //           title: "Install framer-motion",
+  //           code: "npm install framer-motion",
+  //           description: "Used to power the effect animations without jQuery.",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       id: "component",
+  //       label: "Component Code",
+  //       steps: [
+  //         {
+  //           title: "Copy component file",
+  //           description: "Copy the GooeyHoverButton component to your project.",
+  //           filePath: "components/GooeyHoverButton.tsx",
+  //         },
+  //       ],
+  //     },
+  //   ],
+  //   codeFiles: [{ path: "components/GooeyHoverButton.tsx", collapsed: false }],
+  // },
 };
